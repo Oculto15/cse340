@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+main{
+    position: relative;
+}
+body {
+    background-image: url(../images/site/small_check.jpg);
+    z-index: -1;
+}
+
+#wrap {
+    background-color: #fff;
+}
+
+header div a {
+    color: black;
+    text-decoration: none;
+}
+
+nav .navigation li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.top_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top_nav img {
+    width: 50%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.top_nav a {
+    margin-right: 30px;
+}
+
+nav {
+    background-color: #3a3a3a;
+}
+
+.navigation {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    max-width: 300px;
+}
+
+.title {
+    font-size: 20px;
+    color: #3a3a3a;
+    padding: 30px 5px;
+}
+
+.title-upgrades {
+    font-size: 20px;
+    color: #3a3a3a;
+    padding: 30px 35px;
+}
+
+.car_info {
+    color: blue;
+}
+
+.car {
+    width: 100%;
+}
+
+.own_today {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.own_today img {
+    width: 50%;
+}
+
+.card {
+    padding: 10px;
+}
+
+.card ul {
+    list-style: none;
+}
+
+.comments {
+    font-size: 12px;
+    padding-left: 40px;
+    letter-spacing: 2px;
+}
+
+.comments li {
+    padding: 3px;
+}
+
+.upgrades {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    object-fit: contain;
+    gap: 5px;
+    margin: 5px;
+}
+
+.upgrades div div {
+    width: 150px;
+    height: 71.5px;
+    background-color: #4c96d7;
+    border: 1px solid;
+}
+
+.upgrades div div img {
+    margin: auto;
+    display: block;
+}
+
+.upgrades div p {
+    text-align: center;
+    text-decoration: underline;
+    padding-bottom: 25px;
+}
+
+footer div {
+    padding-bottom: 20px;
+}
+
+footer div p {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+span {
+    content: "";
+    display: block;
+    border-bottom: 3px solid #3a3a3a;
+}
+
+.reviews {
+    padding-left: 30px;
+}
+
+@media only screen and (min-width: 700px) {
+    #wrap {
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 600px;
+        border: 5px solid #4c96d7;
+        border-radius: 10px;
+    }
+
+    .top_nav img {
+        width: 20%;
+        padding-bottom: 20px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .reviews-upgrades {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #wrap {
+        max-width: 900px;
+    }
+
+    .comments {
+        font-size: 11px;
+    }
+
+    .comments li {
+        padding: 6px;
+    }
+
+    .reviews {
+        grid-column: 2/3;
+    }
+
+    .upgrades-grid {
+        grid-row: 1/2;
+    }
+
+    .navigation {
+        max-width: 400px;
+        font-size: 20px;
+        padding-top: 9px;
+    }
+
+    nav {
+        height: 40px;
+    }
+
+    .own_today img {
+        width: 16%;
+        position: absolute;
+        top: 18%;
+        left: 3%;
+    }
+
+    .card {
+        padding: 0 0 0 40px;
+    }
+
+    .first {
+        padding-top: 10px;
+    }
+
+    .top_nav img {
+        width: 20%;
+    }
+
+
+}
+
+@media only screen and (min-width: 1400px) {
+    .own_today img {
+        width: 11%;
+        top: 42%;
+        left: 21%;
+    }
+}
