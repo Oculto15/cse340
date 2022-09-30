@@ -33,27 +33,27 @@
         <div class="upgrades">
             <div>
                 <div>
-                    <img src="/phpmotors/images/upgrades/bumper_sticker.jpg" alt="" width="65" height="65">
+                    <img src="/phpmotors/images/upgrades/bumper_sticker.jpg" alt="Bumper Sticker" width="65" height="65">
                 </div>
-                <p><a href="#"></a>Bumper Sticker</p>
+                <p><a href="/phpmotors/views/home.php">Bumper Sticker</a>Bumper Sticker</p>
             </div>
             <div>
                 <div>
-                    <img src="/phpmotors/images/upgrades/flame.jpg" alt="" width="65" height="65">
+                    <img src="/phpmotors/images/upgrades/flame.jpg" alt="Flames Decals" width="65" height="65">
                 </div>
-                <p><a href="#"></a>Flames Decals</p>
+                <p><a href="/phpmotors/views/home.php">Flames Decals</a></p>
             </div>
             <div>
                 <div>
-                    <img src="/phpmotors/images/upgrades/flux-cap.png" alt="" width="65" height="65">
+                    <img src="/phpmotors/images/upgrades/flux-cap.png" alt="Flux Capacitor" width="65" height="65">
                 </div>
-                <p><a href="#"></a>Flux Capacitor</p>
+                <p><a href="/phpmotors/views/home.php">Flux Capacitor</a></p>
             </div>
             <div>
                 <div> 
-                    <img src="/phpmotors/images/upgrades/hub-cap.jpg" alt="" width="65" height="65">
+                    <img src="/phpmotors/images/upgrades/hub-cap.jpg" alt="Hub Caps" width="65" height="65">
                 </div>
-                <p><a href="#"></a>Hub Caps</p>
+                <p><a href="/phpmotors/views/home.php">Hub Caps</a></p>
             </div>
         </div>
     </div>
