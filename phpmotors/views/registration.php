@@ -19,12 +19,8 @@
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
         </header>
         <nav>
-            <?php //require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; ?>
-            <?php echo $navList; ?>
+            <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; ?>
         </nav>
-        <main>
-            <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/main.php'; ?>
-        </main>
         <footer>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>
         </footer>

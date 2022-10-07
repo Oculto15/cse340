@@ -23,6 +23,7 @@ header div a {
     text-decoration: none;
 }
 
+
 nav .navigation li a {
     color: #fff;
     text-decoration: none;
@@ -52,7 +53,7 @@ nav {
     display: flex;
     list-style: none;
     justify-content: space-around;
-    max-width: 300px;
+    /* max-width: 300px; */
 }
 
 .title {
@@ -207,7 +208,7 @@ span {
     }
 
     .navigation {
-        max-width: 400px;
+        /* max-width: 400px; */
         font-size: 20px;
         padding-top: 9px;
     }
@@ -239,7 +240,7 @@ span {
 @media only screen and (min-width: 1400px) {
     .own_today img {
         width: 11%;
-        top: 42%;
-        left: 21%;
+        top: 18%;
+        left: 4%;
     }
 }
