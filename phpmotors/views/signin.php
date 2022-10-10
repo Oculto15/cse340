@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Put your description here.">
-    <title>Account Registration</title>
+    <title>Account Login</title>
     <link rel="stylesheet" href="/phpmotors/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; ?>
         </nav>
         <main>
-        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/registration.php'; ?>
+            <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/signin.php'; ?>
         </main>
         <footer>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>
