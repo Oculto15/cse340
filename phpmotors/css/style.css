@@ -194,12 +194,22 @@ label, input{
     text-align: center;
 }
 
-button{
+#regbtn, #pss-show{
     padding: 9px 25px;
     border-radius: 12px;
     border: none;
     margin-top: 10px;
     font-size: 18px;
+}
+
+button:hover{
+    color: white;
+    background-color: black;
+}
+
+#regbtn:hover{
+    color: white;
+    background-color: black;
 }
 
 .signup{
