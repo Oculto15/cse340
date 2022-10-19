@@ -1,4 +1,5 @@
 <?php
+// ini_set('display_errors',1);
 
 //Accounts Controller
 
@@ -19,24 +20,53 @@ foreach ($classifications as $classification) {
 }
 $navList .= '</ul>';
 
-$classificationList = '<ul class="classification">';
 
-$classificationList .= "<br><select><option> Choose one options</option>";
-foreach ($classifications['classificationName'] as $classificationId=>$classificationName){
-    $classificationList .= "<option value='$key'> $classificationName</option>";
-    $classificationList .= ("</select><br>");
+
+$dropDownList .= "<br><select name ='classificationlist' class ='dropdownlist'><option> Choose one options</option>";
+foreach ($classifications as $classification){
+    // print_r($classification);
+    $dropDownList .= "<option value='$classification[classificationId]'> $classification[classificationName]</option>";
 }
-$classificationList .= '<ul/>';
+$dropDownList .= ("</select><br>");
 
-// echo $navList;
+
+// echo $dropDownList;
 
 $action = filter_input(INPUT_GET, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_POST, 'action');
 }
 switch ($action) {
-    case '';
+    case 'addVehicle':
+        // print_r($_REQUEST);
+        // die;
+        $invMake = filter_input(INPUT_POST, 'invMake');
+        $invModel = filter_input(INPUT_POST, 'invModel');
+        $invDescription = filter_input(INPUT_POST, 'invDescription');
+        $invImage = filter_input(INPUT_POST, 'invImage');
+        $invThumbnail = filter_input(INPUT_POST, 'invThumbnail');
+        $invPrice = filter_input(INPUT_POST, 'invPrice');
+        $invStock = filter_input(INPUT_POST, 'invStock');
+        $invColor = filter_input(INPUT_POST, 'invColor');
+        $classificationId = filter_input(INPUT_POST, 'classificationId');
+
+        // Check for missing data
+        if (empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage)|| empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId)) {
+            $message = '<p>Please provide information for all empty form fields.</p>';
+            include '../views/add_vehicle.php';
+            exit;
+        }
+
+        // Send the data to the model
+        $regOutcome = regClient($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId);
         break;
-    case '';
+    case 'classification-page':
+        include '../views/add-classificacion.php';
+        break;
+    case 'vehicle-page':
+        include '../views/add_vehicle.php';
+        break;
+    default:
+        include '../views/vehicle-management.php';
         break;
 }

@@ -173,6 +173,10 @@ span {
     padding: 25px;
 }
 
+.note{
+    padding-left: 25px;
+}
+
 form{
     padding: 0 30px;
 }
@@ -214,6 +218,11 @@ button:hover{
 
 .signup{
     padding: 10px 0;
+}
+
+.dropdownlist{
+    margin: 10px 35px;
+    padding: 2px;
 }
 
 @media only screen and (min-width: 700px) {

@@ -23,7 +23,7 @@
             ?>
         </nav>
         <main>
-        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/vehicle-management.php';?>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/add_vehicle.php';?>
         </main>
         <footer>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>
