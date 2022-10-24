@@ -35,7 +35,7 @@
                 <div>
                     <img src="/phpmotors/images/upgrades/bumper_sticker.jpg" alt="Bumper Sticker" width="65" height="65">
                 </div>
-                <p><a href="/phpmotors/views/home.php">Bumper Sticker</a>Bumper Sticker</p>
+                <p><a href="/phpmotors/views/home.php">Bumper Sticker</a></p>
             </div>
             <div>
                 <div>

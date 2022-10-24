@@ -22,7 +22,7 @@ $navList .= '</ul>';
 
 
 
-$dropDownList .= "<br><select name ='classificationlist' class ='dropdownlist'><option> Choose one options</option>";
+$dropDownList = "<br><select name ='classificationId' class ='dropdownlist'><option> Choose one options</option>";
 foreach ($classifications as $classification){
     // print_r($classification);
     $dropDownList .= "<option value='$classification[classificationId]'> $classification[classificationName]</option>";
@@ -40,6 +40,8 @@ switch ($action) {
     case 'addVehicle':
         // print_r($_REQUEST);
         // die;
+
+        // Filter and store the data
         $invMake = filter_input(INPUT_POST, 'invMake');
         $invModel = filter_input(INPUT_POST, 'invModel');
         $invDescription = filter_input(INPUT_POST, 'invDescription');
@@ -52,14 +54,39 @@ switch ($action) {
 
         // Check for missing data
         if (empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage)|| empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId)) {
-            $message = '<p>Please provide information for all empty form fields.</p>';
+            $message = "<p class='message'>Please provide information for all empty form fields.</p>";
             include '../views/add_vehicle.php';
             exit;
         }
 
         // Send the data to the model
-        $regOutcome = regClient($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId);
-        break;
+        $regOutcome = addVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId);
+        
+        if($regOutcome === 1){
+            $message = "<p class='message'>The $invMake $invModel was added successfully!</p>";
+            include '../views/add_vehicle.php';
+            exit;
+        }
+
+    case 'addClassification':
+
+        // Filter and store the data
+        $classificationName = filter_input(INPUT_POST, 'classificationName');
+
+        // Check for missing data
+        if (empty($classificationName) ) {
+            $message = "<p class='message'>Please provide information for all empty form fields.</p>";
+            include '../views/add-classificacion.php';
+            exit;
+        }
+
+        $outcome = addName($classificationName);
+
+        if($outcome === 1){
+            header("Location: /phpmotors/vehicles/index.php");
+            exit;
+        }
+        
     case 'classification-page':
         include '../views/add-classificacion.php';
         break;

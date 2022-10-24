@@ -19,7 +19,6 @@ foreach ($classifications as $classification) {
     $navList .= "<li><a href='/phpmotors/index.php?action=" . urlencode($classification['classificationName']) . "' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
 }
 $navList .= '</ul>';
-// echo $navList;
 
 $action = filter_input(INPUT_GET, 'action');
 if ($action == NULL) {
@@ -36,7 +35,7 @@ switch ($action) {
 
         // Check for missing data
         if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)) {
-            $message = '<p>Please provide information for all empty form fields.</p>';
+            $message = "<p class='message'>Please provide information for all empty form fields.</p>";
             include '../views/registration.php';
             exit;
         }
@@ -46,11 +45,11 @@ switch ($action) {
 
         // Check and report the result
         if($regOutcome === 1){
-            $message = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
+            $message = "<p class='message'>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
             include '../views/signin.php';
             exit;
            } else {
-            $message = "<p>Sorry $clientFirstname, but the registration failed. Please try again.</p>";
+            $message = "<p class='message'>Sorry $clientFirstname, but the registration failed. Please try again.</p>";
             echo $message;
             include '../views/registration.php';
             exit;

@@ -19,11 +19,11 @@ function addName($classificationName){
     // Insert the data
     $stmt->execute();
     // Ask how many rows changed as a result of our insert
-    $dropDownList = $stmt->rowCount();
+    $rowsChanged = $stmt->rowCount();
     // Close the database interaction
     $stmt->closeCursor();
     // Return the indication of success (rows changed)
-    return $dropDownList;
+    return $rowsChanged;
    }
 
    function addVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId ){

@@ -188,6 +188,7 @@ label, input{
 
 .registration form label, input{
     width: 250px;
+    padding: 2px;
 }
 
 .registration form p{
@@ -225,6 +226,25 @@ button:hover{
     padding: 2px;
 }
 
+.title-vehicle{
+    text-align: center;
+    padding: 20px;
+}
+
+.add-options, .options{
+    margin: 15px 50px;
+    display: block;
+    color: black;
+    max-width: 155px;
+}
+
+.add-options:hover{
+    color: #4c96d7;
+}
+
+.message{
+    padding: 15px 30px;
+}
 @media only screen and (min-width: 700px) {
     #wrap {
         margin-top: 40px;
