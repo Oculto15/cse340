@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+<?php
+$dropDownList = "<br><select name ='classificationId' class ='dropdownlist'><option> Choose one options</option>";
+foreach ($classifications as $classification){
+    // print_r($classification);
+    $dropDownList .= "<option value='$classification[classificationId]'";
+    if(isset($classificationId)){
+        if($classification['classificationId'] == $classificationId){
+                    $dropDownList .= 'selected';
+        }
+    }
+    $dropDownList .= ">$classification[classificationName]</option>";
+}
+$dropDownList .= ("</select><br>");
+
+console_log($classificationId);
+console_log($classification['classificationId']);
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,8 +35,7 @@
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
         </header>
         <nav>
-            <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; 
-            ?>
+            <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; ?>
         </nav>
         <main>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/add_vehicle.php';?>

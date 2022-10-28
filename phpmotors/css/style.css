@@ -245,6 +245,11 @@ button:hover{
 .message{
     padding: 15px 30px;
 }
+
+.restriction{
+    padding-left: 7px;
+}
+
 @media only screen and (min-width: 700px) {
     #wrap {
         margin-top: 40px;
@@ -312,6 +317,10 @@ button:hover{
 
     .top_nav img {
         width: 20%;
+    }
+
+    .signin-size{
+        max-width: 400px;
     }
 
 

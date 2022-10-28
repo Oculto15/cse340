@@ -19,8 +19,7 @@
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
         </header>
         <nav>
-            <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; 
-            ?>
+            <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; ?>
         </nav>
         <main>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/vehicle-management.php';?>
