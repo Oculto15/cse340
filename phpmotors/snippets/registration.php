@@ -17,7 +17,7 @@
         <p class="restriction">Minimum of 8 characters</p>
         <p class="restriction">At least one 1 capital letter, at least 1 number</p>
         <p class="restriction">At least 1 special character</p>
-        <input type="submit" name="show" id="pss-show" value="Show password"><br>
+        <input type="checkbox" name="show" id="pss-show" onclick="myFunction()">Show password<br>
         <input type="submit" name="submit" id="regbtn" value="Register">
         <input type="hidden" name="action" value="register">
         <br><br>

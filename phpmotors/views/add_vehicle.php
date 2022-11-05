@@ -11,9 +11,6 @@ foreach ($classifications as $classification){
     $dropDownList .= ">$classification[classificationName]</option>";
 }
 $dropDownList .= ("</select><br>");
-
-console_log($classificationId);
-console_log($classification['classificationId']);
 ?><!DOCTYPE html>
 <html lang="en">
 

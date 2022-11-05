@@ -1,11 +1,12 @@
 <div class="signin-size">
     <h1 class="signin">Sign In</h1>
     <?php
-    if (isset($message)) {
-        echo $message;
+    if (isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
     }
     ?>
-    <form action="/phpmotors/accounts/index.php">
+    <form action="/phpmotors/accounts/index.php" method="post">
         <label for="email">Username</label><br>
         <input type="email" id="email" name="clientEmail" placeholder="Username or Email address" size="30" required <?php if(isset($clientEmail)){echo "value='$clientEmail'";}?>><br>
         <label for="password">Password</label><br>

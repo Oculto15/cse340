@@ -30,7 +30,7 @@ foreach ($classifications as $classification){
     // print_r($classification);
     $dropDownList .= "<option value='$classification[classificationId]'";
     if(isset($classificationId)){
-        if($classification['classificationId'] === $classificationId){
+        if($classification['classificationId'] == $classificationId){
                     $dropDownList .= ' selected ';
         }
     }
@@ -48,4 +48,9 @@ function console_log($output, $with_script_tags = true) {
     }
     
     echo $js_code;
+}
+
+function displayLoginMessage($clientFirstname){
+    $message = "Thanks for registering $clientFirstname. Please use your email and password to login.";
+    return $message;
 }

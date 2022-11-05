@@ -3,6 +3,10 @@
 
 //Accounts Controller
 
+
+// Create or access a Session
+session_start();
+
 // Get the database connection file
 require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/library/connections.php';
 // Get the PHP Motors model for use as needed
@@ -19,9 +23,9 @@ $navList = createNav($classifications);
 $dropDownList = generateList($classifications);
 
 
-$action = filter_input(INPUT_GET, 'action');
+$action = trim(filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 if ($action == NULL) {
-    $action = filter_input(INPUT_POST, 'action');
+    $action = trim(filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 }
 switch ($action) {
     case 'addVehicle':
@@ -58,7 +62,7 @@ switch ($action) {
     case 'addClassification':
 
         // Filter and store the data
-        $classificationName = filter_input(INPUT_POST, 'classificationName');
+        $classificationName = trim(filter_input(INPUT_POST, 'classificationName',FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 
         // Check for missing data
         if (empty($classificationName) ) {

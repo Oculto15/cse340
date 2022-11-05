@@ -144,7 +144,7 @@ footer div p {
 span {
     content: "";
     display: block;
-    border-bottom: 3px solid #3a3a3a;
+    /* border-bottom: 3px solid #3a3a3a; */
 }
 
 .reviews {
@@ -248,6 +248,19 @@ button:hover{
 
 .restriction{
     padding-left: 7px;
+}
+
+.user{
+    padding: 20px;
+}
+
+.user-p{
+    padding: 5px 20px;
+}
+
+.user-info{
+    padding-left: 40px;
+    list-style: none;
 }
 
 @media only screen and (min-width: 700px) {

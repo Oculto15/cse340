@@ -9,6 +9,9 @@
     ?>
 
     <form action="/phpmotors/vehicles/index.php" method="post">
+        <?php
+            echo $dropDownList;
+        ?>
         <label for="make">Make</label><br>
         <input type="text" id="make" name="invMake" placeholder="make" required <?php if(isset($invMake)){echo "value='$invMake'";}?>><br>
         <label for="model">Model</label><br>
@@ -25,9 +28,7 @@
         <input type="text" id="stock" name="invStock" placeholder="stock" required <?php if(isset($invStock)){echo "value='$invStock'";}?>><br>
         <label for="color">Color</label><br>
         <input type="text" id="color" name="invColor" placeholder="color" required <?php if(isset($invColor)){echo "value='$invColor'";}?>><br>
-        <?php
-            echo $dropDownList;
-        ?>
+        
         <input type="submit" name="submit" id="regbtn" value="Add Vehicle">
         <input type="hidden" name="action" value="addVehicle">
         <br><br>
