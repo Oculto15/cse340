@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors',1);
 
 // Create or access a Session
 session_start();
@@ -129,7 +130,7 @@ switch ($action) {
         setcookie('firstname', $clientData['clientFirstname'], strtotime('+1 year'), '/');
         setcookie('lastname', $clientData['clientLastname'], strtotime('+1 year'), '/');
         // Send them to the admin view
-        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/views/admin.php';
+        header('Location: /phpmotors/accounts/index.php');
         exit;
         break;
     case 'logout':
@@ -137,11 +138,56 @@ switch ($action) {
         session_destroy();
         header('Location: /phpmotors/index.php');
         break;
+
     case 'vehicle-management':
         include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/views/vehicle-management.php';
         break;
+
+    case 'thanksforjoin':
+       
+        $firstName = trim(filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $lastName = trim(filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $email = trim(checkEmail(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL)));
+        console_log($firstName);
+        // Check for existing email address in the table 
+        // $existingEmail = checkExistingEmail($email);
+        
+        // if($existingEmail){
+        //     $message = '<p class="notice message">That email address already exists. Do you want to login instead?</p>';
+        //     include '../views/newsletter.php';
+        //     exit;
+        // }
+
+        // Check for missing data
+        if (empty($firstName) || empty($lastName) || empty($email)) {
+            $message = "<p class='message'>Please provide information for all empty form fields.</p>";
+            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/views/newsletter.php';
+            exit;
+        }
+
+        $newsletter = newsLetter($firstName, $lastName, $email);
+
+        //Check and report the result
+        if($newsletter === 1){
+
+            $_SESSION['message'] = "<p class='message'>Thanks for registering $firstName. Please use your email and password to login.</p>";
+            header('Location: /phpmotors/accounts/?action=thanks');
+            exit;
+           } else {
+            $message = "<p class='message'>Sorry $firstName, but the registration failed. Please try again.</p>";
+            echo $message;
+            include '../views/newsletter.php';
+            exit;
+        }
+        break;
+    case 'newsLetter':
+        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/views/newsletter.php';
+        break;
+    case 'thanks':
+        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/views/thanksforjoin.php';
+        break;
     default:
-        include '../views/home.php';
+        include '../views/admin.php';
 }
 
 

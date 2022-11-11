@@ -27,7 +27,7 @@ function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassw
     $stmt->closeCursor();
     // Return the indication of success (rows changed)
     return $rowsChanged;
-   }
+}
 
 
 // Check for an existing email address
@@ -57,3 +57,28 @@ function getClient($clientEmail){
     $stmt->closeCursor();
     return $clientData;
 }
+
+
+function newsLetter($firstName, $lastName, $email){
+    // Create a connection object using the phpmotors connection function
+    $db = phpmotorsConnect();
+    // The SQL statement
+    $sql = 'INSERT INTO newsletter (firstName, lastName, email)
+        VALUES (:firstName, :lastName, :email)';
+    // Create the prepared statement using the phpmotors connection
+    $stmt = $db->prepare($sql);
+    // The next four lines replace the placeholders in the SQL
+    // statement with the actual values in the variables
+    // and tells the database the type of data it is
+    $stmt->bindValue(':firstName', $firstName, PDO::PARAM_STR);
+    $stmt->bindValue(':lastName', $lastName, PDO::PARAM_STR);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    // Insert the data
+    $stmt->execute();
+    // Ask how many rows changed as a result of our insert
+    $newsletter = $stmt->rowCount();
+    // Close the database interaction
+    $stmt->closeCursor();
+    // Return the indication of success (rows changed)
+    return $newsletter;
+   }

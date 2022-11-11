@@ -1,3 +1,12 @@
+<?php
+if ($_SESSION['clientData']['clientLevel'] < 2) {
+    header('Location: /phpmotors/accounts/index.php');
+    exit;
+}
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,12 +31,35 @@
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; ?>
         </nav>
         <main>
-        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/vehicle-management.php';?>
+            <h1 class="title-vehicle">Vehicle Management</h1>
+
+            <h3 class="options">Choose an option</h3>
+            <a class="add-options" href="/phpmotors/vehicles?action=classification-page">Add Classification</a>
+            <a class="add-options" href="/phpmotors/vehicles?action=vehicle-page">Add Vehicle</a>
+
+            <?php
+            if (isset($message)) {
+                echo $message;
+            }
+            if (isset($classificationList)) {
+                echo '<h2 class="options">Vehicles By Classification</h2>';
+                echo '<p class="options">Choose a classification to see those vehicles</p>';
+                echo $classificationList;
+            }
+            ?>
+            <noscript>
+                <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
+            </noscript>
+            <table id="inventoryDisplay"></table>
         </main>
         <footer>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>
         </footer>
     </div>
+
+
+    <script src="../js/inventory.js"></script>
 </body>
 
 </html>
+<?php unset($_SESSION['message']); ?>

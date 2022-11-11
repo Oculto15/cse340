@@ -17,8 +17,10 @@
     <div id="wrap">
         <header>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
+            <a class="add-options" href="/phpmotors/accounts?action=newsLetter">Join Newsletter</a>
         </header>
         <nav>
+            
             <?php //require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; ?>
             <?php echo $navList; ?>
         </nav>

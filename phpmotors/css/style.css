@@ -222,7 +222,7 @@ button:hover{
 }
 
 .dropdownlist{
-    margin: 10px 35px;
+    margin: 10px 50px;
     padding: 2px;
 }
 
@@ -235,7 +235,7 @@ button:hover{
     margin: 15px 50px;
     display: block;
     color: black;
-    max-width: 155px;
+    max-width: 350px;
 }
 
 .add-options:hover{
@@ -263,6 +263,16 @@ button:hover{
     list-style: none;
 }
 
+table{
+    margin:auto;
+}
+
+th{
+    padding-top: 10px;
+}
+.td-table, .tr-table{
+    padding: 5px;
+}
 @media only screen and (min-width: 700px) {
     #wrap {
         margin-top: 40px;
@@ -276,6 +286,16 @@ button:hover{
     .top_nav img {
         width: 20%;
         padding-bottom: 20px;
+    }
+
+    table{
+        position:none; margin: 0 ; 
+    }
+
+    tbody{
+        width: 400px;
+        float: left;
+        margin-left: 45px;
     }
 }
 
@@ -325,8 +345,6 @@ button:hover{
     .card {
         padding: 0 0 0 40px;
     }
-
-    
 
     .top_nav img {
         width: 20%;
