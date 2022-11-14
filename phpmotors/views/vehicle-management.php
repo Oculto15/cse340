@@ -4,7 +4,8 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
     exit;
 }
 if (isset($_SESSION['message'])) {
-    $message = $_SESSION['message'];
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
 }
 ?>
 <!DOCTYPE html>

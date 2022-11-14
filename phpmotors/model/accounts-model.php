@@ -81,4 +81,41 @@ function newsLetter($firstName, $lastName, $email){
     $stmt->closeCursor();
     // Return the indication of success (rows changed)
     return $newsletter;
-   }
+}
+
+function updatePassword($clientPassword) {
+    $db = phpmotorsConnect();
+    $sql = 'UPDATE clients SET clientPassword = :clientPassword';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientPassword', $clientPassword, PDO::PARAM_STR);
+    $stmt->execute();
+    $passwordChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $passwordChanged;
+}
+
+function getClientInfo($clientId)
+{
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM clients WHERE clientId = :clientId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    $stmt->execute();
+    $clientInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $clientInfo;
+}
+
+function updateAccount($clientId, $clientFirstname, $clientLastname, $clientEmail) {
+    $db = phpmotorsConnect();
+    $sql = 'UPDATE clients SET clientFirstname = :clientFirstname, clientLastname = :clientLastname, clientEmail = :clientEmail  WHERE clientId = :clientId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);
+    $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);
+    $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+    $stmt->execute();
+    $accountChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $accountChanged;
+}

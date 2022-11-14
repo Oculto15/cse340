@@ -1,6 +1,7 @@
 <?php
 if (isset($_SESSION['message'])) {
-    $message = $_SESSION['message'];
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
 }
 if (isset($_SESSION['loggedin'])) {
     $firstname = $_SESSION['clientData']['clientFirstname'];

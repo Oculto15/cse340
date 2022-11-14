@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors',1);
+// ini_set('display_errors',1);
 
 // Create or access a Session
 session_start();
@@ -144,7 +144,6 @@ switch ($action) {
         break;
 
     case 'thanksforjoin':
-       
         $firstName = trim(filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $lastName = trim(filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $email = trim(checkEmail(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL)));
@@ -185,6 +184,63 @@ switch ($action) {
         break;
     case 'thanks':
         include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/views/thanksforjoin.php';
+        break;
+    case 'updateAccount':
+        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/views/client-update.php';
+        break;
+    case 'updatePassword':
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $checkPassword = checkPassword($clientPassword);
+
+        if (empty($checkPassword) ){
+            $_SESSION['message2'] = "<p class='message color'>Please make sure your password matches the desired pattern.</p>";
+            include '../views/client-update.php';
+            exit;
+        }
+
+        $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+        $updateResult = updatePassword($hashedPassword);
+       
+        if($updateResult){
+            $_SESSION['message'] = "<p class='message'>Your password has been updated.</p>";
+            include '../views/admin.php';
+            exit;
+           } else {
+            $message = "<p class='message'>Please make sure your password matches the desired pattern..</p>";
+            echo $message;
+            include '../views/client-update.php';
+            exit;
+        }
+        break;
+
+    case 'updateInfo':
+        $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientEmail = trim(checkEmail(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL)));
+        $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
+        console_log($clientId);
+
+        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientId)){
+            $_SESSION['message'] =  "<p class='message color'>Please provide information for all empty form fields.</p>";
+            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/views/client-update.php';
+            exit;
+        }
+        
+        $updatesAccount = updateAccount($clientId, $clientFirstname, $clientLastname, $clientEmail);
+
+        if($updatesAccount){
+            $_SESSION['clientData'] = getClientInfo($clientId);
+            $_SESSION['message'] = "<p class='message color'>$clientFirstname, Your information have been updated.</p>";
+            include '../views/admin.php';
+            exit;
+           } else {
+            $_SESSION['message'] = "<p class='message color'>Sorry $clientFirstname, we could not update your account information. Please Try again.</p>";
+            include '../views/client-update.php';
+            exit;
+        }
+        break;
+    case 'admin': 
+        include '../views/admin.php';
         break;
     default:
         include '../views/admin.php';

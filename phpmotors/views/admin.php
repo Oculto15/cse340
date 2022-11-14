@@ -25,15 +25,24 @@
             <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                 echo "<h1 class='user'> {$_SESSION['clientData']['clientFirstname']}  {$_SESSION['clientData']['clientLastname']}</h1>";
                 echo "<p class='user-p'>You are logged in</p>";
+
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                }
                 echo "<ul>
+                <li class='user-info'>First Name: {$_SESSION['clientData']['clientFirstname']}</li>
+                <li class='user-info'>Last Name: {$_SESSION['clientData']['clientLastname']}</li>
                 <li class='user-info'>Email: {$_SESSION['clientData']['clientEmail']}</li>
-                <li class='user-info'>Client Level: {$_SESSION['clientData']['clientLevel']}</li>
             </ul>";
                 if ($_SESSION['clientData']['clientLevel'] > 1) {
                     echo "<h1 class='user'> Inventory Management </h1>";
                     echo "<p class='user-p'> Use this link to manage the inventory</p>";
                     echo "<a class='add-options' href='/phpmotors/vehicles?action=vehicle-management'>Vehicle Management</a>";
                 }
+                echo "<h3 class='user-p'>Account Management</h3>";
+                echo "<p class='user-p'>Use this link to update account information.</p>";
+                echo "<a class='add-options' href='/phpmotors/accounts?action=updateAccount'>update account information</a>";
             }
             ?>
         </main>

@@ -41,8 +41,12 @@ nav .navigation li a {
     justify-content: space-around;
 }
 
-.top_nav a {
-    margin-right: 30px;
+.top_nav div, div .padding {
+    margin-right: 10px;
+}
+
+.top_nav div a {
+    padding: 5px;
 }
 
 nav {
@@ -272,6 +276,26 @@ th{
 }
 .td-table, .tr-table{
     padding: 5px;
+}
+
+.newPassword{
+    padding-left: 30px;
+}
+
+#pss-show{
+    width: 10px;
+}
+
+.center{
+    max-width: 315px;
+}
+
+.color{
+    color: red;
+}
+
+.click{
+    width: 20px;
 }
 @media only screen and (min-width: 700px) {
     #wrap {

@@ -43,7 +43,7 @@
                     <input type="submit" name="submit" id="regbtn" value="Login">
                     <input type="hidden" name="action" value="login">
                 </form>
-                <p class="signup">No account? <a href="/phpmotors/accounts?action=registration-page">Sign-up</a></p>
+                <p class="signup center">No account? <a href="/phpmotors/accounts?action=registration-page">Sign-up</a></p>
             </div>
         </main>
         <footer>
