@@ -202,7 +202,7 @@ switch ($action) {
         $updateResult = updatePassword($hashedPassword);
        
         if($updateResult){
-            $_SESSION['message'] = "<p class='message'>Your password has been updated.</p>";
+            $_SESSION['message'] = "<p class='message color'>" . $_SESSION['clientData']['clientFirstname'] . ", Your password has been updated.</p>";
             include '../views/admin.php';
             exit;
            } else {

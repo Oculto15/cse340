@@ -203,7 +203,7 @@ label, input{
     text-align: center;
 }
 
-#regbtn, #pss-show{
+#regbtn, #regbtn2, #pss-show{
     padding: 9px 25px;
     border-radius: 12px;
     border: none;
@@ -217,6 +217,10 @@ button:hover{
 }
 
 #regbtn:hover{
+    color: white;
+    background-color: black;
+}
+#regbtn2:hover{
     color: white;
     background-color: black;
 }

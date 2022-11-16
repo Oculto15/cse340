@@ -105,7 +105,7 @@ if (isset($_SESSION['loggedin'])) {
             <form action="/phpmotors/accounts/index.php" method="post">
                 <label for="password">Password</label><br>
                 <input type="password" id="password" name="clientPassword" placeholder="Password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
-                <input type="submit" name="submit" id="regbtn" value="Update Password">
+                <input type="submit" name="submit" id="regbtn2" value="Update Password">
                 <input type="hidden" name="action" value="updatePassword">
                 <br><br>
             </form>
