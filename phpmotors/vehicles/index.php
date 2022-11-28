@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors',1);
+ini_set('display_errors', 1);
 
 //Accounts Controller
 
@@ -93,7 +93,7 @@ switch ($action) {
         echo json_encode($inventoryArray);
         break;
     case 'mod':
-        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $invInfo = getInvItemInfo($invId);
         if (count($invInfo) < 1) {
             $message = 'Sorry, no vehicle information could be found.';
@@ -109,21 +109,20 @@ switch ($action) {
         $invImage = trim(filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
-        $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT));
         $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $invId = trim(filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT));
 
         if (
             empty($classificationId) || empty($invMake) || empty($invModel)
             || empty($invDescription) || empty($invImage) || empty($invThumbnail)
-            || empty($invPrice) || empty($invStock) || empty($invColor)
+            || empty($invPrice) || empty($invColor)
         ) {
             $message = '<p>Please complete all information for the item! Double check the classification of the item.</p>';
-            include '../view/vehicle-update.php';
+            include '../views/vehicle-update.php';
             exit;
         }
 
-        $updateResult = updateVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId, $invId);
+        $updateResult = updateVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invColor, $classificationId, $invId);
         if ($updateResult) {
             $message = "<p class='message'>Congratulations, the $invMake $invModel was successfully updated.</p>";
             $_SESSION['message'] = $message;
@@ -136,7 +135,7 @@ switch ($action) {
         }
         break;
     case 'del':
-        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $invInfo = getInvItemInfo($invId);
         if (count($invInfo) < 1) {
             $message = 'Sorry, no vehicle information could be found.';
@@ -162,6 +161,35 @@ switch ($action) {
             header('location: /phpmotors/vehicles/');
             exit;
         }
+        break;
+    case 'classification':
+        $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $vehicles = getVehiclesByClassification($classificationName);
+        if (!count($vehicles)) {
+            $message = "<p class='notice'>Sorry, no $classificationName could be found.</p>";
+        } else {
+            $vehicleDisplay = buildVehiclesDisplay($vehicles);
+        }
+        // echo $vehicleDisplay;
+        // exit;
+        include '../views/classification.php';
+        break;
+    case 'details':
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $invInfo = getInvItemInfo($invId);
+
+
+        
+        // var_dump($invId);
+        // var_dump($invInfo);
+        if (count($invInfo) < 1) {
+            $message = 'Sorry, no vehicle information could be found.';
+        }
+        else{
+            $new = displayVehicleInfo($invInfo);
+        }
+    
+        include '../views/vehicle-details.php';
         break;
     default:
         $classificationList = buildClassificationList($classifications);

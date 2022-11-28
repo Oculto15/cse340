@@ -3,16 +3,11 @@ $dropDownList = "<br><select name ='classificationId' class ='dropdownlist'><opt
 foreach ($classifications as $classification) {
     // print_r($classification);
     $dropDownList .= "<option value='$classification[classificationId]'";
-    console_log($classificationId);
     if (isset($classificationId)) {
         if ($classification['classificationId'] == $classificationId) {
             $dropDownList .= 'selected';
         }
-    } elseif (isset($invInfo['classificationId'])) {
-        if ($classification['classificationId'] == $invInfo['classificationId']) {
-            $classifList .= ' selected ';
-        }
-    }
+    } 
     $dropDownList .= ">$classification[classificationName]</option>";
 }
 $dropDownList .= ("</select><br>");
@@ -41,7 +36,7 @@ $dropDownList .= ("</select><br>");
         <header>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
         </header>
-        <nav>
+        <nav class="main-nav">
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; ?>
         </nav>
         <main>
@@ -98,12 +93,6 @@ $dropDownList .= ("</select><br>");
                                                                                                     echo "value='$invPrice'";
                                                                                                 } elseif (isset($invInfo['invPrice'])) {
                                                                                                     echo "value='$invInfo[invPrice]'";
-                                                                                                } ?>><br>
-                    <label for="stock">Stock</label><br>
-                    <input type="text" id="stock" name="invStock" placeholder="stock" required <?php if (isset($invStock)) {
-                                                                                                    echo "value='$invStock'";
-                                                                                                } elseif (isset($invInfo['invStock'])) {
-                                                                                                    echo "value='$invInfo[invStock]'";
                                                                                                 } ?>><br>
                     <label for="color">Color</label><br>
                     <input type="text" id="color" name="invColor" placeholder="color" required <?php if (isset($invColor)) {

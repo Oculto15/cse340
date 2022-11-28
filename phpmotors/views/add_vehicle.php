@@ -32,7 +32,7 @@ $dropDownList .= ("</select><br>");
         <header>
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
         </header>
-        <nav>
+        <nav class="main-nav">
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; ?>
         </nav>
         <main>
@@ -41,8 +41,9 @@ $dropDownList .= ("</select><br>");
 
                 <p class="note">*Note all fields are required</p>
                 <?php
-                if (isset($message)) {
-                    echo $message;
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
                 }
                 ?>
 

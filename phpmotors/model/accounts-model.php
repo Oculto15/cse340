@@ -119,3 +119,15 @@ function updateAccount($clientId, $clientFirstname, $clientLastname, $clientEmai
     $stmt->closeCursor();
     return $accountChanged;
 }
+
+function getSearch($k){
+
+    $db = phpmotorsConnect();
+    $sql = "SELECT * FROM inventory WHERE invDescription LIKE CONCAT('%',:k,'%') OR invColor LIKE CONCAT('%',:k,'%') LIMIT 10 OFFSET 2";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':k', $k, PDO::PARAM_STR);
+    $stmt->execute();
+    $search = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $search;
+}

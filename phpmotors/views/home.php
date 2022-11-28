@@ -19,9 +19,7 @@
             <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
             <a class="add-options" href="/phpmotors/accounts?action=newsLetter">Join Newsletter</a>
         </header>
-        <nav>
-            
-            <?php //require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navigation.php'; ?>
+        <nav class="main-nav">
             <?php echo $navList; ?>
         </nav>
         <main>
