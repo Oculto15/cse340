@@ -1,8 +1,4 @@
-<?php
-
-// $page = $_GET['page'];
-// $start = ($page -1);
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -27,29 +23,28 @@
         </nav>
         <main>
             <h1 class="signin">Search</h1>
-
-            <p class="searchQues">What are you looking for today?</p>
-
+            <?php
+            if (isset($_SESSION['message02'])) {
+                echo $_SESSION['message02'];
+                unset($_SESSION['message02']);
+            }
+            ?>
             <form action="/phpmotors/accounts/index.php" method="post">
+                <label for="search">What are you looking for today?</label><br>
                 <input type="text" name="k" id="search" placeholder="Search" autocomplete="off"><br>
-                <?php
-                if (isset($_SESSION['message02'])) {
-                    echo $_SESSION['message02'];
-                    unset($_SESSION['message02']);
-                }
-                ?>
+
 
                 <input type="submit" name="search" id="regbtn3" value="Search">
                 <input type="hidden" name="action" value="searchInfo">
             </form>
 
             <?php
+            if (isset($_SESSION['noResult'])) {
+                echo $_SESSION['noResult'];
+                unset($_SESSION['noResult']);
+            }
 
-
-            // if (isset($results) && $results > 0) {
-            //     echo '<p class="searchResult"> Returned '. number_format($results) .' results for: '.$display_words .'</p>' ;
-
-            if (isset($results) && $results > 0) {
+            if (isset($results) && count($results) > 0) {
 
                 if (isset($_SESSION['countResult'])) {
                     echo $_SESSION['countResult'];
@@ -63,19 +58,27 @@
                         <p>' . $row['invDescription'] . '</p>
                     </div>';
                 }
-            } else if (isset($results)) {
-                echo '<p class="searchResult">No results found. Please search something else.</p>';
             }
-
             ?>
 
             <div class="page-container">
                 <nav class="page-nav">
                     <ul class="pages">
-                        <li><a href="#">PREVIOUS</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">NEXT</a></li>
+
+                        <?php
+                        if (isset($pageNUm) && $pageNUm > 0) {
+                            echo '<li><a href=/phpmotors/accounts/index.php?action=changePage&pageNUm=' . $pageNUm - 1 . '&k=' . $k . '><<<</a></li>';
+                        }
+                        if (isset($_SESSION['switchPages'])) {
+                            echo $_SESSION['switchPages'];
+                            unset($_SESSION['switchPages']);
+                        }
+                        if (isset($page)) {
+                            if (isset($pageNUm) && $pageNUm != ($page - 2)) {
+                                echo '<li><a href=/phpmotors/accounts/index.php?action=changePage&pageNUm=' . $pageNUm + 1 . '&k=' . $k . '>>>></a></li>';
+                            }
+                        }
+                        ?>
                     </ul>
                 </nav>
             </div>

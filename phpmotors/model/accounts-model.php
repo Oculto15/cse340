@@ -120,14 +120,27 @@ function updateAccount($clientId, $clientFirstname, $clientLastname, $clientEmai
     return $accountChanged;
 }
 
-function getSearch($k){
-
+function getSearch($k, $pageNUm){
+    $offSet = $pageNUm * 10;
     $db = phpmotorsConnect();
-    $sql = "SELECT * FROM inventory WHERE invDescription LIKE CONCAT('%',:k,'%') OR invColor LIKE CONCAT('%',:k,'%') LIMIT 10 OFFSET 2";
+    $sql = "SELECT * FROM inventory WHERE invDescription LIKE CONCAT('%',:k,'%') OR invColor LIKE CONCAT('%',:k,'%') LIMIT 10 OFFSET :offSet";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':k', $k, PDO::PARAM_STR);
+    $stmt->bindValue(':offSet', $offSet, PDO::PARAM_INT);
+    $stmt->bindValue(':pageNUm', $pageNUm, PDO::PARAM_INT);
+    $stmt->execute();
+    $search = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $search;
+}
+
+function getSearchNum($k){
+    $db = phpmotorsConnect();
+    $sql = "SELECT COUNT(*) FROM inventory WHERE invDescription LIKE CONCAT('%',:k,'%') OR invColor LIKE CONCAT('%',:k,'%')";
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':k', $k, PDO::PARAM_STR);
     $stmt->execute();
-    $search = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $search = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $search;
 }

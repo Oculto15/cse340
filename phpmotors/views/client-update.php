@@ -15,8 +15,7 @@ if (isset($_SESSION['loggedin'])) {
     $lastname = $_SESSION['clientData']['clientLastname'];
     $email = $_SESSION['clientData']['clientEmail'];
 }
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
